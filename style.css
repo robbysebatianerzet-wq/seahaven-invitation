@@ -1,12 +1,14 @@
 *{
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
 
 body{
 
-    background:#f7f7f7;
+    background:#f5f5f5;
 
     font-family:Arial, Helvetica, sans-serif;
 
@@ -30,13 +32,53 @@ body{
 
     display:block;
 
-    margin-bottom:30px;
-
     border-radius:15px;
 
     box-shadow:0 10px 25px rgba(0,0,0,.15);
 
+    margin-bottom:30px;
+
 }
+
+/* Invitation 1 */
+
+.invitation-front{
+
+    position:relative;
+
+}
+
+/* Nama Tamu */
+
+#guestName{
+
+    position:absolute;
+
+    left:50%;
+
+    top:82%;
+
+    transform:translate(-50%,-50%);
+
+    width:45%;
+
+    text-align:center;
+
+    font-size:34px;
+
+    font-weight:500;
+
+    color:#222;
+
+    line-height:1.2;
+
+    font-family:Arial, Helvetica, sans-serif;
+
+    pointer-events:none;
+
+}
+
+/* Button */
 
 .button-group{
 
@@ -47,8 +89,6 @@ body{
     gap:20px;
 
     flex-wrap:wrap;
-
-    margin-top:20px;
 
 }
 
@@ -72,8 +112,30 @@ body{
 
 .btn:hover{
 
-    background:#245f4d;
+    background:#2d6d59;
 
     transform:translateY(-3px);
+
+}
+
+@media(max-width:768px){
+
+    #guestName{
+
+        width:60%;
+
+        font-size:28px;
+
+        top:63%;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        text-align:center;
+
+    }
 
 }

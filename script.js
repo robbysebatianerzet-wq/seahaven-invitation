@@ -1,15 +1,15 @@
-// Google Form RSVP
-function openRSVP() {
-    window.open(
-        "https://docs.google.com/forms/d/e/1FAIpQLSdb1w9pBS1JxuLQS4lHLqbYqwonGQGFVrIus-An2ItS3EPKTg/viewform",
-        "_blank"
-    );
-}
+const params = new URLSearchParams(window.location.search);
 
-// Download Invitation PDF
-function downloadInvitation() {
-    window.open(
-        "https://drive.google.com/file/d/ISI_FILE_ID_DISINI/view",
-        "_blank"
-    );
+const guest = params.get("guest");
+
+const guestName = document.getElementById("guestName");
+
+if (guest) {
+
+    guestName.innerHTML = decodeURIComponent(guest);
+
+} else {
+
+    guestName.innerHTML = "Our Distinguished Guest";
+
 }
