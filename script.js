@@ -10,11 +10,11 @@ const guestName = document.getElementById("guestName");
 
 if (guest) {
 
-    guestName.innerHTML = decodeURIComponent(guest);
+    guestName.textContent = decodeURIComponent(guest);
 
 } else {
 
-    guestName.innerHTML = "Our Distinguished Guest";
+    guestName.textContent = "Our Distinguished Guest";
 
 }
 
@@ -24,12 +24,22 @@ if (guest) {
 
 const rsvpButton = document.getElementById("rsvpButton");
 
-if (rsvpButton && guest){
+if (rsvpButton) {
 
-    const formURL =
-        "https://docs.google.com/forms/d/e/1FAIpQLSdb1w9pBS1JxuLQS4lHLqbYqwonGQGFVrIus-An2ItS3EPKTg/viewform?usp=pp_url"
-        + "&entry.971898052=" + encodeURIComponent(guest);
+    const baseURL =
+        "https://docs.google.com/forms/d/e/1FAIpQLSfTNwyctNnz9KR4f4WHtUo234dq0oVlWAY77o9CVXWRkidDxg/viewform?usp=pp_url";
 
-    rsvpButton.href = formURL;
+    if (guest) {
+
+        rsvpButton.href =
+            baseURL +
+            "&entry.2095795296=" +
+            encodeURIComponent(decodeURIComponent(guest));
+
+    } else {
+
+        rsvpButton.href = baseURL;
+
+    }
 
 }
