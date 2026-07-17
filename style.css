@@ -1,9 +1,7 @@
 *{
-
     margin:0;
     padding:0;
     box-sizing:border-box;
-
 }
 
 body{
@@ -17,7 +15,6 @@ body{
 .container{
 
     width:100%;
-
     max-width:900px;
 
     margin:auto;
@@ -40,7 +37,9 @@ body{
 
 }
 
-/* Invitation 1 */
+/* ===========================
+   Invitation Front
+=========================== */
 
 .invitation-front{
 
@@ -48,37 +47,52 @@ body{
 
 }
 
-/* Nama Tamu */
+/* ===========================
+   Guest Name
+=========================== */
 
 #guestName{
 
     position:absolute;
 
     left:50%;
-
     top:82%;
+
+    width:48%;
+    height:85px;
 
     transform:translate(-50%,-50%);
 
-    width:45%;
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
 
     text-align:center;
 
-    font-size:34px;
+    font-family:Arial, Helvetica, sans-serif;
+
+    font-size:40px;
 
     font-weight:500;
 
+    line-height:1.15;
+
     color:#222;
 
-    line-height:1.2;
+    padding:0 10px;
 
-    font-family:Arial, Helvetica, sans-serif;
+    overflow:hidden;
+
+    word-break:break-word;
 
     pointer-events:none;
 
 }
 
-/* Button */
+/* ===========================
+   Buttons
+=========================== */
 
 .button-group{
 
@@ -118,50 +132,17 @@ body{
 
 }
 
-@media(max-width:768px){
+/* ===========================
+   Mobile
+=========================== */
 
-    #guestName{
-
-        width:60%;
-
-        font-size:28px;
-
-        top:63%;
-
-    }
+@media (max-width:768px){
 
     .btn{
 
         width:100%;
 
         text-align:center;
-
-    }
-
-}
-/* =========================
-   Mobile Responsive
-========================= */
-
-@media (max-width:768px){
-
-    #guestName{
-
-        width:70%;
-
-        left:50%;
-
-        top:46.5%;
-
-        transform:translate(-50%,-50%);
-
-        font-size:26px;
-
-        line-height:1.25;
-
-        text-align:center;
-
-        word-break:break-word;
 
     }
 
