@@ -1,127 +1,69 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blessing Ceremony - Seahaven Villas by Kamuela</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blessing Ceremony - Seahaven Villas by Kamuela</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- CONTAINER UTAMA -->
-  <div class="invitation-container">
+    <!-- BRANDING HEADER -->
+    <section class="brand-header">
+        <div class="brand-container">
+            <div class="brand-logo">
+                SEAHAVEN VILLAS
+                <span>BY KAMUELA</span>
+            </div>
+            <div class="guest-box">
+                <p class="event-title">BLESSING CEREMONY</p>
+                <p class="salutation">Dear</p>
+                <h1 id="guest-name">Our Distinguished Guest</h1>
+            </div>
+        </div>
+    </section>
 
-    <!-- HEADER / NAMA TAMU DI ATAS -->
-    <header class="guest-header">
-      <div class="brand-title">
-        SEAHAVEN VILLAS
-        <span>BY KAMUELA</span>
-      </div>
-      <div class="guest-box">
-        <p class="guest-label">BLESSING CEREMONY</p>
-        <p class="guest-salutation">Dear</p>
-        <h1 id="guest-name" class="guest-name">Our Distinguished Guest</h1>
-      </div>
-    </header>
-
-    <!-- SLIDER UNDANGAN -->
-    <div class="slider-container">
-      <div class="slides-wrapper" id="slidesWrapper">
+    <!-- CONTENT / IMAGES -->
+    <main class="invitation-body">
         
-        <!-- SLIDE 1 -->
-        <div class="slide">
-          <img 
-            src="assets/Opening Invitation - Seahaven 1.jpg" 
-            alt="Seahaven Villas Blessing Ceremony Invitation - Slide 1"
-            class="invitation-img"
-          >
-        </div>
+        <!-- SLIDE / GAMBAR 1 -->
+        <section class="card-section">
+            <img src="assets/Opening%20Invitation%20-%20Seahaven%201.jpg" alt="Seahaven Villas Blessing Ceremony Invitation">
+        </section>
 
-        <!-- SLIDE 2 -->
-        <div class="slide">
-          <img 
-            src="assets/Opening Invitation - Seahaven 2.jpg" 
-            alt="Seahaven Villas Blessing Ceremony Details - Slide 2"
-            class="invitation-img"
-          >
-        </div>
+        <!-- SLIDE / GAMBAR 2 -->
+        <section class="card-section">
+            <img src="assets/Opening%20Invitation%20-%20Seahaven%202.jpg" alt="Seahaven Villas Blessing Ceremony Details">
+        </section>
 
-      </div>
+        <!-- ACTION BUTTONS -->
+        <section class="action-section">
+            <a href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7" target="_blank" rel="noopener noreferrer" class="btn btn-maps">
+                <span>📍</span>
+                <span>Open Google Maps</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-rsvp">
+                <span>📝</span>
+                <span>Confirm Attendance</span>
+            </a>
+        </section>
 
-      <!-- TOMBOL PANAH NAVIGASI -->
-      <button class="nav-btn prev-btn" id="prevBtn" onclick="moveSlide(-1)">&#10094;</button>
-      <button class="nav-btn next-btn" id="nextBtn" onclick="moveSlide(1)">&#10095;</button>
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-logo">SEAHAVEN VILLAS</div>
+            <div class="footer-sub">BY KAMUELA</div>
+            <p>Thank you for being part of our special occasion.</p>
+        </footer>
 
-      <!-- INDICATOR TITIK SLIDE -->
-      <div class="dots-container">
-        <span class="dot active" onclick="currentSlide(0)"></span>
-        <span class="dot" onclick="currentSlide(1)"></span>
-      </div>
-    </div>
+    </main>
 
-    <!-- TOMBOL AKSI (MAPS & RSVP) -->
-    <div class="action-buttons">
-      <a href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7" target="_blank" rel="noopener noreferrer" class="btn btn-maps">
-        <span>📍</span> Open Google Maps
-      </a>
-      <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-rsvp">
-        <span>📝</span> Confirm Attendance
-      </a>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="invitation-footer">
-      <div class="footer-brand">SEAHAVEN VILLAS</div>
-      <div class="footer-sub">BY KAMUELA</div>
-      <p>Thank you for being part of our special occasion.</p>
-    </footer>
-
-  </div>
-
-  <!-- SCRIPT LOGIKA NAMA TAMU & SLIDER -->
-  <script>
-    // 1. Dapatkan Nama Tamu dari Parameter URL (?guest=Nama atau ?to=Nama)
-    function getGuestName() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const guestName = urlParams.get('guest') || urlParams.get('to');
-      if (guestName) {
-        document.getElementById('guest-name').textContent = decodeURIComponent(guestName);
-      }
-    }
-
-    // 2. Logika Slider / Carousel (Slide 1 <-> Slide 2)
-    let currentSlideIndex = 0;
-
-    function showSlide(index) {
-      const wrapper = document.getElementById('slidesWrapper');
-      const dots = document.querySelectorAll('.dot');
-      const totalSlides = 2;
-
-      if (index >= totalSlides) currentSlideIndex = 0;
-      else if (index < 0) currentSlideIndex = totalSlides - 1;
-      else currentSlideIndex = index;
-
-      wrapper.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
-
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentSlideIndex);
-      });
-    }
-
-    function moveSlide(step) {
-      showSlide(currentSlideIndex + step);
-    }
-
-    function currentSlide(index) {
-      showSlide(index);
-    }
-
-    // Jalankan saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', () => {
-      getGuestName();
-      showSlide(0);
-    });
-  </script>
-
+    <script>
+        // Logika membaca nama tamu dari URL (?guest=Nama atau ?to=Nama)
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get('guest') || urlParams.get('to');
+        if (guestName) {
+            document.getElementById('guest-name').textContent = decodeURIComponent(guestName);
+        }
+    </script>
 </body>
 </html>
