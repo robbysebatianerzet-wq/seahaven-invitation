@@ -12,7 +12,7 @@ html, body {
     width: 100%;
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #0d1e18; /* Warna hijau gelap khas Kamuela */
+    background-color: #0d1e18; /* Hijau gelap khas Kamuela */
     color: #ffffff;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -151,6 +151,7 @@ html, body {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px 16px 40px;
+    position: relative;
 }
 
 .invitation.show {
@@ -162,10 +163,12 @@ html, body {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
 }
 
 .img-wrapper {
     overflow: hidden;
+    width: 100%;
 }
 
 .invitation-image {
@@ -175,7 +178,7 @@ html, body {
     transition: transform 1.5s ease-out;
 }
 
-/* Slow Zoom Effect saat terdeteksi scroll */
+/* Slow Zoom Effect */
 .zoom-effect.visible .invitation-image {
     animation: slowZoom 10s ease-out forwards;
 }
@@ -298,4 +301,64 @@ html, body {
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ==========================================
+   OPTIMASI MOBILE (FULL SCREEN INVITATION)
+   ========================================== */
+@media (max-width: 768px) {
+    .invitation {
+        padding: 0 0 40px 0;
+        max-width: 100%;
+    }
+
+    .invitation-page {
+        height: 100vh;
+        width: 100vw;
+        margin-bottom: 0;
+        border-radius: 0;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0d1e18;
+        position: relative;
+    }
+
+    .img-wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .invitation-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .scroll-indicator {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 10;
+        background: rgba(13, 30, 24, 0.65);
+        padding: 6px 16px;
+        border-radius: 20px;
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .actions {
+        padding: 40px 20px 20px;
+        margin: 0;
+    }
+
+    .footer {
+        padding: 30px 20px 40px;
+    }
 }
