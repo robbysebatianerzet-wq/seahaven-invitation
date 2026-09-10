@@ -4,38 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>THE OPENING INVITATION | Seahaven Villas by Kamuela</title>
-    
-    <!-- Google Fonts untuk Font Serif Elegan -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- OPENING COVER -->
+    <!-- BACKGROUND MUSIC -->
+    <audio id="bgMusic" loop preload="auto">
+        <!-- Kamu bisa mengganti link mp3 ini dengan file audio pilihanmu di folder assets -->
+        <source src="assets/bg-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- FLOATING MUSIC CONTROL BUTTON -->
+    <button id="musicToggle" class="music-btn hidden" aria-label="Toggle Music">
+        <span id="musicIcon">🎵</span>
+    </button>
+
+    <!-- OPENING COVER (CINEMATIC) -->
     <section id="opening" class="opening">
+        <div class="opening-overlay"></div>
         <div class="opening-content">
 
-            <!-- LOGO / BRANDING -->
             <div class="brand">
-                <!-- Jika ingin pakai Gambar Logo, hapus comment tag <img> di bawah ini & sesuaikan nama filenya -->
-                <!-- <img src="assets/logo-seahaven.png" alt="Seahaven Villas Logo" class="brand-logo-img"> -->
-                
-                <!-- Opsi Teks Elegan (Bawaan) -->
-                <div class="brand-text">
-                    SEAHAVEN VILLAS
-                    <span>BY KAMUELA</span>
-                </div>
+                SEAHAVEN VILLAS
+                <span>BY KAMUELA</span>
             </div>
 
             <div class="ceremony">
                 <p class="eyebrow">THE OPENING INVITATION</p>
                 <p class="dear">Dear</p>
 
-                <h1 id="guestName">Rusman Suwandi</h1>
+                <h1 id="guestName">Our Distinguished Guest</h1>
 
                 <button id="openInvitation" class="open-btn">
                     OPEN INVITATION
@@ -48,17 +47,26 @@
     <!-- MAIN INVITATION -->
     <main id="invitation" class="invitation">
 
-        <!-- Invitation Image -->
-        <section class="invitation-page reveal">
-            <img
-                src="assets/Opening%20Invitation%20-%20Seahaven-02.jpg"
-                alt="Seahaven Villas Blessing Ceremony Invitation"
-                class="invitation-image"
-            >
+        <!-- Invitation Front (Slow Zoom / Fade) -->
+        <section class="invitation-page reveal zoom-effect">
+            <div class="img-wrapper">
+                <img
+                    src="assets/Opening%20Invitation%20-%20Seahaven-02.jpg"
+                    alt="Seahaven Villas Blessing Ceremony Invitation"
+                    class="invitation-image"
+                >
+            </div>
         </section>
+
+        <!-- SCROLL INDICATOR -->
+        <div class="scroll-indicator reveal">
+            <span>Scroll Down</span>
+            <div class="arrow">↓</div>
+        </div>
 
         <!-- ACTION BUTTONS -->
         <section class="actions reveal">
+
             <a
                 href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7"
                 target="_blank"
@@ -79,19 +87,22 @@
                 <span class="icon">📝</span>
                 <span>Confirm Attendance</span>
             </a>
+
         </section>
 
-        <!-- FOOTER -->
+        <!-- ELEGANT FOOTER -->
         <footer class="footer reveal">
+            <div class="footer-line"></div>
             <div class="footer-brand">SEAHAVEN VILLAS</div>
             <div class="footer-sub">BY KAMUELA</div>
-            <p>Thank you for being part of our special occasion.</p>
+            <p class="footer-tagline">Thank you for being part of our special occasion.</p>
+            <div class="footer-copyright">&copy; 2026 Seahaven Villas by Kamuela</div>
         </footer>
 
     </main>
 
     <script>
-        // GET GUEST NAME
+        // 1. GET GUEST NAME FROM URL
         const params = new URLSearchParams(window.location.search);
         const guest = params.get("guest");
         const guestName = document.getElementById("guestName");
@@ -102,7 +113,7 @@
         }
         guestName.textContent = guestText;
 
-        // RSVP LINK
+        // 2. RSVP GOOGLE FORM LINK SETUP
         const rsvpButton = document.getElementById("rsvpButton");
         const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfTNwyctNnz9KR4f4WHtUo234dq0oVlWAY77o9CVXWRkidDxg/viewform?usp=pp_url";
 
@@ -112,12 +123,42 @@
             rsvpButton.href = formURL;
         }
 
-        // OPEN INVITATION TRANSITION
+        // 3. BACKGROUND MUSIC & TOGGLE LOGIC
+        const bgMusic = document.getElementById("bgMusic");
+        const musicToggle = document.getElementById("musicToggle");
+        const musicIcon = document.getElementById("musicIcon");
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.textContent = "🔇";
+                musicToggle.classList.add("muted");
+            } else {
+                bgMusic.play().catch(e => console.log("Audio play deferred:", e));
+                musicIcon.textContent = "🎵";
+                musicToggle.classList.remove("muted");
+            }
+            isPlaying = !isPlaying;
+        }
+
+        musicToggle.addEventListener("click", toggleMusic);
+
+        // 4. OPEN INVITATION TRANSITION
         const openButton = document.getElementById("openInvitation");
         const opening = document.getElementById("opening");
         const invitation = document.getElementById("invitation");
 
         openButton.addEventListener("click", function () {
+            // Play background music
+            bgMusic.play().then(() => {
+                isPlaying = true;
+            }).catch(e => console.log("Autoplay blocked:", e));
+            
+            // Show music button
+            musicToggle.classList.remove("hidden");
+
+            // Cinematic Close Transition
             opening.classList.add("closing");
 
             setTimeout(function () {
@@ -129,7 +170,7 @@
             }, 550);
         });
 
-        // SCROLL REVEAL
+        // 5. SCROLL REVEAL OBSERVER
         const revealElements = document.querySelectorAll(".reveal");
         const observer = new IntersectionObserver(
             function(entries) {
