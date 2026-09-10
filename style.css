@@ -12,8 +12,8 @@ html, body {
     width: 100%;
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f7f6f2; /* Warna krim terang bersih khas Kamuela */
-    color: #1b4d3e; /* Teks warna hijau tua */
+    background-color: #0d1e18; /* Warna hijau gelap khas Kamuela */
+    color: #ffffff;
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
@@ -29,8 +29,8 @@ html, body {
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    background: #1b4d3e;
-    border: 1px solid #d4af37;
+    background: rgba(27, 77, 62, 0.85);
+    border: 1px solid rgba(212, 175, 55, 0.5);
     color: #ffffff;
     font-size: 18px;
     display: flex;
@@ -38,7 +38,7 @@ html, body {
     justify-content: center;
     cursor: pointer;
     backdrop-filter: blur(8px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     transition: all 0.3s ease;
     animation: pulseGlow 2s infinite;
 }
@@ -59,7 +59,7 @@ html, body {
 }
 
 /* ==========================================
-   OPENING COVER
+   OPENING COVER (CINEMATIC)
    ========================================== */
 .opening {
     position: fixed;
@@ -67,7 +67,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #f7f6f2;
+    background: #0d1e18;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +91,7 @@ html, body {
 .brand {
     font-size: 18px;
     letter-spacing: 4px;
-    color: #1b4d3e;
+    color: #d4af37; /* Warna emas */
     font-weight: 600;
     margin-bottom: 40px;
 }
@@ -100,7 +100,7 @@ html, body {
     display: block;
     font-size: 10px;
     letter-spacing: 3px;
-    color: #668374;
+    color: #a3b899;
     margin-top: 4px;
 }
 
@@ -114,38 +114,37 @@ html, body {
 .ceremony .dear {
     font-size: 14px;
     font-style: italic;
-    color: #555555;
+    color: #e0e0e0;
     margin-bottom: 6px;
 }
 
 .ceremony h1 {
     font-size: 26px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 40px;
-    color: #1b4d3e;
+    color: #ffffff;
 }
 
 .open-btn {
-    background: #1b4d3e;
-    border: 1px solid #1b4d3e;
-    color: #ffffff;
+    background: transparent;
+    border: 1px solid #d4af37;
+    color: #d4af37;
     padding: 14px 32px;
     font-size: 12px;
     letter-spacing: 3px;
     cursor: pointer;
     border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(27, 77, 62, 0.2);
     transition: all 0.3s ease;
 }
 
 .open-btn:active {
-    background: #12352b;
-    transform: scale(0.98);
+    background: #d4af37;
+    color: #0d1e18;
 }
 
 /* ==========================================
-   MAIN INVITATION
+   MAIN INVITATION & REVEAL ANIMATIONS
    ========================================== */
 .invitation {
     display: none;
@@ -162,7 +161,7 @@ html, body {
     margin-bottom: 24px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .img-wrapper {
@@ -176,12 +175,13 @@ html, body {
     transition: transform 1.5s ease-out;
 }
 
+/* Slow Zoom Effect saat terdeteksi scroll */
 .zoom-effect.visible .invitation-image {
     animation: slowZoom 10s ease-out forwards;
 }
 
 @keyframes slowZoom {
-    0% { transform: scale(1.04); }
+    0% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
 
@@ -191,10 +191,10 @@ html, body {
 .scroll-indicator {
     text-align: center;
     margin: 20px 0 30px;
-    color: #1b4d3e;
+    color: #d4af37;
     font-size: 11px;
     letter-spacing: 2px;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .scroll-indicator .arrow {
@@ -228,7 +228,7 @@ html, body {
     border-radius: 8px;
     text-decoration: none;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1px;
     transition: all 0.3s ease;
 }
@@ -236,19 +236,17 @@ html, body {
 .maps-btn {
     background: #1b4d3e;
     color: #ffffff;
-    border: 1px solid #1b4d3e;
-    box-shadow: 0 4px 12px rgba(27, 77, 62, 0.15);
+    border: 1px solid #2d6a56;
 }
 
 .rsvp-btn {
-    background: #ffffff;
-    color: #1b4d3e;
-    border: 1px solid #1b4d3e;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background: transparent;
+    color: #d4af37;
+    border: 1px solid #d4af37;
 }
 
 .action-btn:active {
-    opacity: 0.85;
+    opacity: 0.8;
     transform: scale(0.98);
 }
 
@@ -258,33 +256,33 @@ html, body {
 .footer {
     text-align: center;
     padding: 30px 20px 20px;
-    border-top: 1px solid rgba(27, 77, 62, 0.15);
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .footer-brand {
     font-size: 14px;
     letter-spacing: 3px;
-    color: #1b4d3e;
+    color: #d4af37;
     font-weight: 600;
 }
 
 .footer-sub {
     font-size: 10px;
     letter-spacing: 2px;
-    color: #668374;
+    color: #a3b899;
     margin-bottom: 15px;
 }
 
 .footer-tagline {
     font-size: 12px;
     font-style: italic;
-    color: #555555;
+    color: #cccccc;
     margin-bottom: 20px;
 }
 
 .footer-copyright {
     font-size: 10px;
-    color: #888888;
+    color: #777777;
     letter-spacing: 1px;
 }
 
