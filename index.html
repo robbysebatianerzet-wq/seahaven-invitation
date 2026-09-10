@@ -2,191 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>THE OPENING INVITATION | Seahaven Villas by Kamuela</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seahaven Villas by Kamuela | Opening</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <!-- BACKGROUND MUSIC -->
-    <audio id="bgMusic" loop preload="auto">
-        <!-- Kamu bisa mengganti link mp3 ini dengan file audio pilihanmu di folder assets -->
-        <source src="assets/bg-music.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- FLOATING MUSIC CONTROL BUTTON -->
-    <button id="musicToggle" class="music-btn hidden" aria-label="Toggle Music">
-        <span id="musicIcon">🎵</span>
-    </button>
-
-    <!-- OPENING COVER (CINEMATIC) -->
+    <!-- OPENING COVER -->
     <section id="opening" class="opening">
-        <div class="opening-overlay"></div>
         <div class="opening-content">
-
             <div class="brand">
-                SEAHAVEN VILLAS
-                <span>BY KAMUELA</span>
+                <!-- Gunakan logo gambar, teks brand di-comment -->
+                <img src="assets/logo-seahaven.png" alt="Seahaven Villas Logo" class="brand-logo">
+                <!-- <div class="brand-text">
+                    SEAHAVEN VILLAS
+                    <span>BY KAMUELA</span>
+                </div> -->
             </div>
 
-            <div class="ceremony">
-                <p class="eyebrow">THE OPENING INVITATION</p>
-                <p class="dear">Dear</p>
-
-                <h1 id="guestName">Our Distinguished Guest</h1>
-
-                <button id="openInvitation" class="open-btn">
-                    OPEN INVITATION
-                </button>
+            <div class="invitation-text">
+                <p class="subtitle">BLESSING CEREMONY</p>
+                <p class="to-label">Dear</p>
+                <h1 id="guest-name" class="guest-name">Valued Guest</h1>
             </div>
 
+            <button id="open-btn" class="open-btn">Open Invitation</button>
         </div>
     </section>
 
-    <!-- MAIN INVITATION -->
-    <main id="invitation" class="invitation">
-
-        <!-- Invitation Front (Slow Zoom / Fade) -->
-        <section class="invitation-page reveal zoom-effect">
-            <div class="img-wrapper">
-                <img
-                    src="assets/Opening%20Invitation%20-%20Seahaven-02.jpg"
-                    alt="Seahaven Villas Blessing Ceremony Invitation"
-                    class="invitation-image"
-                >
-            </div>
+    <!-- MAIN INVITATION CONTENT -->
+    <main id="main-content" class="main-content hidden">
+        <section class="card-section">
+            <img src="assets/Opening%20Invitation%20-%20Seahaven%201.jpg" alt="Seahaven Villas Blessing Ceremony Invitation">
         </section>
 
-        <!-- SCROLL INDICATOR -->
-        <div class="scroll-indicator reveal">
-            <span>Scroll Down</span>
-            <div class="arrow">↓</div>
-        </div>
-
-        <!-- ACTION BUTTONS -->
-        <section class="actions reveal">
-
-            <a
-                href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="action-btn maps-btn"
-            >
-                <span class="icon">📍</span>
-                <span>Open Google Maps</span>
-            </a>
-
-            <a
-                id="rsvpButton"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="action-btn rsvp-btn"
-            >
-                <span class="icon">📝</span>
-                <span>Confirm Attendance</span>
-            </a>
-
+        <section class="card-section">
+            <img src="assets/Opening%20Invitation%20-%20Seahaven%202.jpg" alt="Seahaven Villas Blessing Ceremony Details">
         </section>
 
-        <!-- ELEGANT FOOTER -->
-        <footer class="footer reveal">
-            <div class="footer-line"></div>
-            <div class="footer-brand">SEAHAVEN VILLAS</div>
-            <div class="footer-sub">BY KAMUELA</div>
-            <p class="footer-tagline">Thank you for being part of our special occasion.</p>
-            <div class="footer-copyright">&copy; 2026 Seahaven Villas by Kamuela</div>
+        <section class="action-section">
+            <a href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7" target="_blank" rel="noopener noreferrer" class="btn btn-maps">
+                📍 Open Google Maps
+            </a>
+            <a href="https://forms.gle/your-google-form-link" target="_blank" rel="noopener noreferrer" class="btn btn-rsvp">
+                📝 Confirm Attendance
+            </a>
+        </section>
+
+        <footer class="footer">
+            <p>Seahaven Villas by Kamuela</p>
+            <p>Thank you for being part of our special occasion.</p>
         </footer>
-
     </main>
 
-    <script>
-        // 1. GET GUEST NAME FROM URL
-        const params = new URLSearchParams(window.location.search);
-        const guest = params.get("guest");
-        const guestName = document.getElementById("guestName");
-
-        let guestText = "Our Distinguished Guest";
-        if (guest) {
-            guestText = decodeURIComponent(guest);
-        }
-        guestName.textContent = guestText;
-
-        // 2. RSVP GOOGLE FORM LINK SETUP
-        const rsvpButton = document.getElementById("rsvpButton");
-        const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfTNwyctNnz9KR4f4WHtUo234dq0oVlWAY77o9CVXWRkidDxg/viewform?usp=pp_url";
-
-        if (guest) {
-            rsvpButton.href = formURL + "&entry.2095795296=" + encodeURIComponent(guest);
-        } else {
-            rsvpButton.href = formURL;
-        }
-
-        // 3. BACKGROUND MUSIC & TOGGLE LOGIC
-        const bgMusic = document.getElementById("bgMusic");
-        const musicToggle = document.getElementById("musicToggle");
-        const musicIcon = document.getElementById("musicIcon");
-        let isPlaying = false;
-
-        function toggleMusic() {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicIcon.textContent = "🔇";
-                musicToggle.classList.add("muted");
-            } else {
-                bgMusic.play().catch(e => console.log("Audio play deferred:", e));
-                musicIcon.textContent = "🎵";
-                musicToggle.classList.remove("muted");
-            }
-            isPlaying = !isPlaying;
-        }
-
-        musicToggle.addEventListener("click", toggleMusic);
-
-        // 4. OPEN INVITATION TRANSITION
-        const openButton = document.getElementById("openInvitation");
-        const opening = document.getElementById("opening");
-        const invitation = document.getElementById("invitation");
-
-        openButton.addEventListener("click", function () {
-            // Play background music
-            bgMusic.play().then(() => {
-                isPlaying = true;
-            }).catch(e => console.log("Autoplay blocked:", e));
-            
-            // Show music button
-            musicToggle.classList.remove("hidden");
-
-            // Cinematic Close Transition
-            opening.classList.add("closing");
-
-            setTimeout(function () {
-                invitation.classList.add("show");
-                window.scrollTo({
-                    top: 0,
-                    behavior: "instant"
-                });
-            }, 550);
-        });
-
-        // 5. SCROLL REVEAL OBSERVER
-        const revealElements = document.querySelectorAll(".reveal");
-        const observer = new IntersectionObserver(
-            function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                    }
-                });
-            },
-            { threshold: 0.12 }
-        );
-
-        revealElements.forEach(function(element) {
-            observer.observe(element);
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
