@@ -1,182 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seahaven villas by Kamuela | Soft Opening </title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blessing Ceremony - Seahaven Villas by Kamuela</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- OPENING COVER -->
-    <section id="opening" class="opening">
-        <div class="opening-content">
+  <!-- CONTAINER UTAMA UNDANGAN -->
+  <div class="invitation-container">
+    
+    <!-- TAMPILAN NAMA TAMU (URL Parameter ?to=Nama+Tamu) -->
+    <div id="guest-overlay" class="guest-name-box">
+      <p class="guest-label">Dear / Kepada:</p>
+      <h2 id="guest-name" class="guest-title">Valued Guest</h2>
+    </div>
 
-            <div class="brand">
-                SEAHAVEN VILLAS
-                <span>BY KAMUELA</span>
-            </div>
+    <!-- SLIDER / CAROUSEL -->
+    <div class="slider-wrapper">
+      
+      <!-- SLIDE 1 -->
+      <div class="slide active">
+        <img 
+          src="assets/Opening Invitation - Seahaven 1.jpg" 
+          alt="Seahaven Villas Blessing Ceremony Invitation" 
+          class="invitation-image"
+        >
+      </div>
 
-            <div class="ceremony">
-                <p class="eyebrow">BLESSING CEREMONY</p>
-                <p class="dear">Dear</p>
+      <!-- SLIDE 2 -->
+      <div class="slide">
+        <img 
+          src="assets/Opening Invitation - Seahaven 2.jpg" 
+          alt="Seahaven Villas Blessing Ceremony Details" 
+          class="invitation-image"
+        >
+      </div>
 
-                <h1 id="guestName">Our Distinguished Guest</h1>
+    </div>
 
-                <button id="openInvitation" class="open-btn">
-                    OPEN INVITATION
-                </button>
-            </div>
+    <!-- TOMBOL NAVIGASI SLIDE -->
+    <div class="navigation-controls">
+      <button id="prevBtn" onclick="changeSlide(-1)">&#10094; Prev</button>
+      <span id="slide-indicator">1 / 2</span>
+      <button id="nextBtn" onclick="changeSlide(1)">Next &#10095;</button>
+    </div>
 
-        </div>
-    </section>
+    <!-- TOMBOL ACTION (LOCATION & RSVP) -->
+    <div class="action-buttons">
+      <a href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7" target="_blank" class="btn btn-maps">
+        📍 View Location (Google Maps)
+      </a>
+    </div>
 
+  </div>
 
-    <!-- MAIN INVITATION -->
-    <main id="invitation" class="invitation">
-
-        <!-- Invitation Front -->
-        <section class="invitation-page reveal">
-            <img
-                src="assets/invitation1.jpg"
-                alt="Seahaven Villas Blessing Ceremony Invitation"
-                class="invitation-image"
-            >
-        </section>
-
-        <!-- Invitation Back -->
-        <section class="invitation-page reveal">
-            <img
-                src="assets/invitation2.jpg"
-                alt="Seahaven Villas Blessing Ceremony Details"
-                class="invitation-image"
-            >
-        </section>
-
-        <!-- ACTION BUTTONS -->
-        <section class="actions reveal">
-
-            <a
-                href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="action-btn maps-btn"
-            >
-                <span class="icon">📍</span>
-                <span>Open Google Maps</span>
-            </a>
-
-            <a
-                id="rsvpButton"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="action-btn rsvp-btn"
-            >
-                <span class="icon">📝</span>
-                <span>Confirm Attendance</span>
-            </a>
-
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="footer reveal">
-            <div class="footer-brand">SEAHAVEN VILLAS</div>
-            <div>BY KAMUELA</div>
-            <p>Thank you for being part of our special occasion.</p>
-        </footer>
-
-    </main>
-
-
-    <script>
-
-        // GET GUEST NAME
-        const params = new URLSearchParams(window.location.search);
-        const guest = params.get("guest");
-        const guestName = document.getElementById("guestName");
-
-        let guestText = "Our Distinguished Guest";
-
-        if (guest) {
-            guestText = decodeURIComponent(guest);
-        }
-
-        guestName.textContent = guestText;
-
-
-        // RSVP GOOGLE FORM
-        const rsvpButton = document.getElementById("rsvpButton");
-
-        const formURL =
-            "https://docs.google.com/forms/d/e/1FAIpQLSfTNwyctNnz9KR4f4WHtUo234dq0oVlWAY77o9CVXWRkidDxg/viewform?usp=pp_url";
-
-        if (guest) {
-            rsvpButton.href =
-                formURL +
-                "&entry.2095795296=" +
-                encodeURIComponent(guest);
-        } else {
-            rsvpButton.href = formURL;
-        }
-
-
-        // OPEN INVITATION TRANSITION
-        const openButton =
-            document.getElementById("openInvitation");
-
-        const opening =
-            document.getElementById("opening");
-
-        const invitation =
-            document.getElementById("invitation");
-
-        openButton.addEventListener("click", function () {
-
-            opening.classList.add("closing");
-
-            setTimeout(function () {
-
-                invitation.classList.add("show");
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "instant"
-                });
-
-            }, 550);
-
-        });
-
-
-        // SCROLL REVEAL
-        const revealElements =
-            document.querySelectorAll(".reveal");
-
-        const observer =
-            new IntersectionObserver(
-                function(entries) {
-
-                    entries.forEach(function(entry) {
-
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("visible");
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-        revealElements.forEach(function(element) {
-            observer.observe(element);
-        });
-
-    </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
