@@ -12,8 +12,8 @@ html, body {
     width: 100%;
     height: 100%;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #0d1e18; /* Warna hijau gelap khas Kamuela */
-    color: #ffffff;
+    background-color: #f7f6f2; /* Krem terang bersih khas Kamuela */
+    color: #1b4d3e; /* Teks hijau tua */
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
@@ -29,8 +29,8 @@ html, body {
     width: 46px;
     height: 46px;
     border-radius: 50%;
-    background: rgba(27, 77, 62, 0.85);
-    border: 1px solid rgba(212, 175, 55, 0.5);
+    background: #1b4d3e;
+    border: 1px solid #d4af37;
     color: #ffffff;
     font-size: 18px;
     display: flex;
@@ -38,7 +38,7 @@ html, body {
     justify-content: center;
     cursor: pointer;
     backdrop-filter: blur(8px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     animation: pulseGlow 2s infinite;
 }
@@ -59,7 +59,7 @@ html, body {
 }
 
 /* ==========================================
-   OPENING COVER (CINEMATIC)
+   OPENING COVER
    ========================================== */
 .opening {
     position: fixed;
@@ -67,7 +67,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #0d1e18;
+    background: #f7f6f2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,7 +91,7 @@ html, body {
 .brand {
     font-size: 18px;
     letter-spacing: 4px;
-    color: #d4af37; /* Warna emas */
+    color: #1b4d3e;
     font-weight: 600;
     margin-bottom: 40px;
 }
@@ -100,51 +100,54 @@ html, body {
     display: block;
     font-size: 10px;
     letter-spacing: 3px;
-    color: #a3b899;
+    color: #668374;
     margin-top: 4px;
 }
 
 .ceremony .eyebrow {
     font-size: 11px;
     letter-spacing: 3px;
-    color: #d4af37;
+    color: #668374;
     margin-bottom: 12px;
 }
 
 .ceremony .dear {
     font-size: 14px;
     font-style: italic;
-    color: #e0e0e0;
+    color: #555555;
     margin-bottom: 6px;
+    font-family: Georgia, serif;
 }
 
 .ceremony h1 {
-    font-size: 26px;
+    font-size: 28px;
     font-weight: 400;
+    font-family: Georgia, serif;
     letter-spacing: 1px;
     margin-bottom: 40px;
-    color: #ffffff;
+    color: #111111;
 }
 
 .open-btn {
-    background: transparent;
-    border: 1px solid #d4af37;
-    color: #d4af37;
+    background: #1b4d3e;
+    border: 1px solid #1b4d3e;
+    color: #ffffff;
     padding: 14px 32px;
     font-size: 12px;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     cursor: pointer;
     border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(27, 77, 62, 0.2);
     transition: all 0.3s ease;
 }
 
 .open-btn:active {
-    background: #d4af37;
-    color: #0d1e18;
+    background: #12352b;
+    transform: scale(0.98);
 }
 
 /* ==========================================
-   MAIN INVITATION & REVEAL ANIMATIONS
+   MAIN INVITATION
    ========================================== */
 .invitation {
     display: none;
@@ -161,7 +164,7 @@ html, body {
     margin-bottom: 24px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .img-wrapper {
@@ -175,13 +178,12 @@ html, body {
     transition: transform 1.5s ease-out;
 }
 
-/* Slow Zoom Effect saat terdeteksi scroll */
 .zoom-effect.visible .invitation-image {
     animation: slowZoom 10s ease-out forwards;
 }
 
 @keyframes slowZoom {
-    0% { transform: scale(1.05); }
+    0% { transform: scale(1.04); }
     100% { transform: scale(1); }
 }
 
@@ -191,10 +193,10 @@ html, body {
 .scroll-indicator {
     text-align: center;
     margin: 20px 0 30px;
-    color: #d4af37;
+    color: #1b4d3e;
     font-size: 11px;
     letter-spacing: 2px;
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .scroll-indicator .arrow {
@@ -228,25 +230,27 @@ html, body {
     border-radius: 8px;
     text-decoration: none;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 1px;
     transition: all 0.3s ease;
+}
+
+.rsvp-btn {
+    background: #ffffff;
+    color: #1b4d3e;
+    border: 1px solid #1b4d3e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .maps-btn {
     background: #1b4d3e;
     color: #ffffff;
-    border: 1px solid #2d6a56;
-}
-
-.rsvp-btn {
-    background: transparent;
-    color: #d4af37;
-    border: 1px solid #d4af37;
+    border: 1px solid #1b4d3e;
+    box-shadow: 0 4px 12px rgba(27, 77, 62, 0.15);
 }
 
 .action-btn:active {
-    opacity: 0.8;
+    opacity: 0.85;
     transform: scale(0.98);
 }
 
@@ -256,33 +260,33 @@ html, body {
 .footer {
     text-align: center;
     padding: 30px 20px 20px;
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    border-top: 1px solid rgba(27, 77, 62, 0.15);
 }
 
 .footer-brand {
     font-size: 14px;
     letter-spacing: 3px;
-    color: #d4af37;
+    color: #1b4d3e;
     font-weight: 600;
 }
 
 .footer-sub {
     font-size: 10px;
     letter-spacing: 2px;
-    color: #a3b899;
+    color: #668374;
     margin-bottom: 15px;
 }
 
 .footer-tagline {
     font-size: 12px;
     font-style: italic;
-    color: #cccccc;
+    color: #555555;
     margin-bottom: 20px;
 }
 
 .footer-copyright {
     font-size: 10px;
-    color: #777777;
+    color: #888888;
     letter-spacing: 1px;
 }
 
