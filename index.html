@@ -3,59 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opening - Seahaven villas by Kamuela</title>
+  <title>Blessing Ceremony - Seahaven Villas by Kamuela</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- CONTAINER UTAMA UNDANGAN -->
+  <!-- CONTAINER UTAMA -->
   <div class="invitation-container">
-    
-    <!-- TAMPILAN NAMA TAMU (URL Parameter ?to=Nama+Tamu) -->
-    <div id="guest-overlay" class="guest-name-box">
-      <p class="guest-label">Dear / Kepada:</p>
-      <h2 id="guest-name" class="guest-title">Valued Guest</h2>
-    </div>
 
-    <!-- SLIDER / CAROUSEL -->
-    <div class="slider-wrapper">
-      
-      <!-- SLIDE 1 -->
-      <div class="slide active">
-        <img 
-          src="assets/Opening Invitation - Seahaven 1.jpg" 
-          alt="Seahaven Villas Blessing Ceremony Invitation" 
-          class="invitation-image"
-        >
+    <!-- HEADER / NAMA TAMU DI ATAS -->
+    <header class="guest-header">
+      <div class="brand-title">
+        SEAHAVEN VILLAS
+        <span>BY KAMUELA</span>
+      </div>
+      <div class="guest-box">
+        <p class="guest-label">BLESSING CEREMONY</p>
+        <p class="guest-salutation">Dear</p>
+        <h1 id="guest-name" class="guest-name">Our Distinguished Guest</h1>
+      </div>
+    </header>
+
+    <!-- SLIDER UNDANGAN -->
+    <div class="slider-container">
+      <div class="slides-wrapper" id="slidesWrapper">
+        
+        <!-- SLIDE 1 -->
+        <div class="slide">
+          <img 
+            src="assets/Opening Invitation - Seahaven 1.jpg" 
+            alt="Seahaven Villas Blessing Ceremony Invitation - Slide 1"
+            class="invitation-img"
+          >
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+          <img 
+            src="assets/Opening Invitation - Seahaven 2.jpg" 
+            alt="Seahaven Villas Blessing Ceremony Details - Slide 2"
+            class="invitation-img"
+          >
+        </div>
+
       </div>
 
-      <!-- SLIDE 2 -->
-      <div class="slide">
-        <img 
-          src="assets/Opening Invitation - Seahaven 2.jpg" 
-          alt="Seahaven Villas Blessing Ceremony Details" 
-          class="invitation-image"
-        >
+      <!-- TOMBOL PANAH NAVIGASI -->
+      <button class="nav-btn prev-btn" id="prevBtn" onclick="moveSlide(-1)">&#10094;</button>
+      <button class="nav-btn next-btn" id="nextBtn" onclick="moveSlide(1)">&#10095;</button>
+
+      <!-- INDICATOR TITIK SLIDE -->
+      <div class="dots-container">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
       </div>
-
     </div>
 
-    <!-- TOMBOL NAVIGASI SLIDE -->
-    <div class="navigation-controls">
-      <button id="prevBtn" onclick="changeSlide(-1)">&#10094; Prev</button>
-      <span id="slide-indicator">1 / 2</span>
-      <button id="nextBtn" onclick="changeSlide(1)">Next &#10095;</button>
-    </div>
-
-    <!-- TOMBOL ACTION (LOCATION & RSVP) -->
+    <!-- TOMBOL AKSI (MAPS & RSVP) -->
     <div class="action-buttons">
-      <a href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7" target="_blank" class="btn btn-maps">
-        📍 View Location (Google Maps)
+      <a href="https://maps.app.goo.gl/2dp2iQXgr6QQ9kHh7" target="_blank" rel="noopener noreferrer" class="btn btn-maps">
+        <span>📍</span> Open Google Maps
+      </a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-rsvp">
+        <span>📝</span> Confirm Attendance
       </a>
     </div>
 
+    <!-- FOOTER -->
+    <footer class="invitation-footer">
+      <div class="footer-brand">SEAHAVEN VILLAS</div>
+      <div class="footer-sub">BY KAMUELA</div>
+      <p>Thank you for being part of our special occasion.</p>
+    </footer>
+
   </div>
 
-  <script src="script.js"></script>
+  <!-- SCRIPT LOGIKA NAMA TAMU & SLIDER -->
+  <script>
+    // 1. Dapatkan Nama Tamu dari Parameter URL (?guest=Nama atau ?to=Nama)
+    function getGuestName() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const guestName = urlParams.get('guest') || urlParams.get('to');
+      if (guestName) {
+        document.getElementById('guest-name').textContent = decodeURIComponent(guestName);
+      }
+    }
+
+    // 2. Logika Slider / Carousel (Slide 1 <-> Slide 2)
+    let currentSlideIndex = 0;
+
+    function showSlide(index) {
+      const wrapper = document.getElementById('slidesWrapper');
+      const dots = document.querySelectorAll('.dot');
+      const totalSlides = 2;
+
+      if (index >= totalSlides) currentSlideIndex = 0;
+      else if (index < 0) currentSlideIndex = totalSlides - 1;
+      else currentSlideIndex = index;
+
+      wrapper.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlideIndex);
+      });
+    }
+
+    function moveSlide(step) {
+      showSlide(currentSlideIndex + step);
+    }
+
+    function currentSlide(index) {
+      showSlide(index);
+    }
+
+    // Jalankan saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', () => {
+      getGuestName();
+      showSlide(0);
+    });
+  </script>
+
 </body>
 </html>
