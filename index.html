@@ -5,6 +5,156 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>THE OPENING INVITATION | Seahaven Villas by Kamuela</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* RSVP MODAL STYLES */
+        .rsvp-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .rsvp-modal.show {
+            display: flex;
+        }
+
+        .rsvp-card {
+            background: #ffffff;
+            border-radius: 12px;
+            max-width: 420px;
+            width: 100%;
+            padding: 30px 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            border: 1px solid #d4af37;
+            text-align: left;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .rsvp-card h2 {
+            font-size: 20px;
+            color: #1b4d3e;
+            margin-bottom: 6px;
+            font-family: Georgia, serif;
+        }
+
+        .rsvp-card p.sub {
+            font-size: 12px;
+            color: #668374;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #1b4d3e;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            background: #fdfdfd;
+            color: #333;
+            outline: none;
+        }
+
+        .form-group input[type="text"]:focus {
+            border-color: #1b4d3e;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            padding: 10px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .radio-label:hover {
+            background: #f7f6f2;
+        }
+
+        .radio-label input[type="radio"] {
+            accent-color: #1b4d3e;
+            width: 16px;
+            height: 16px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #1b4d3e;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #12352b;
+        }
+
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .success-msg h3 {
+            color: #1b4d3e;
+            margin-bottom: 8px;
+        }
+
+        .success-msg p {
+            font-size: 13px;
+            color: #555;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,16 +216,14 @@
         <!-- ACTION BUTTONS -->
         <section class="actions reveal">
 
-            <a
+            <button
                 id="rsvpButton"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
                 class="action-btn rsvp-btn"
+                style="width: 100%; cursor: pointer;"
             >
                 <span class="icon">📝</span>
                 <span>Confirm Attendance</span>
-            </a>
+            </button>
 
             <a
                 href="https://maps.app.goo.gl/ZHAkUDC9Wj7egXHk9"
@@ -84,7 +232,7 @@
                 class="action-btn maps-btn"
             >
                 <span class="icon">📍</span>
-                <span>Seahaven villas by Kamuela</span>
+                <span>Open Google Maps</span>
             </a>
 
         </section>
@@ -100,26 +248,95 @@
 
     </main>
 
+    <!-- RSVP POP-UP FORM MODAL -->
+    <div id="rsvpModal" class="rsvp-modal">
+        <div class="rsvp-card">
+            <button id="closeRsvp" class="close-btn">&times;</button>
+            
+            <div id="rsvpFormContainer">
+                <h2>Blessing Ceremony Registration</h2>
+                <p class="sub">Seahaven Villas by Kamuela</p>
+
+                <!-- Hidden Iframe to submit Google Form silently -->
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {showSuccess();}"></iframe>
+
+                <form 
+                    action="https://docs.google.com/forms/d/e/1FAIpQLSfvyrwVnNxtNLEGt5s7TVPHIFJbUlCduc779HK42jw7XskeLg/formResponse" 
+                    method="POST" 
+                    target="hidden_iframe"
+                    onsubmit="submitted=true;"
+                >
+                    <div class="form-group">
+                        <label for="inputGuestName">Guest Name *</label>
+                        <input type="text" id="inputGuestName" name="entry.2095795296" required placeholder="Enter your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Will you attend? *</label>
+                        <div class="radio-options">
+                            <label class="radio-label">
+                                <input type="radio" name="entry.1706245041" value="Yes, I will attend" required checked>
+                                <span>Yes, I will attend</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="entry.1706245041" value="Sorry, I can't attend">
+                                <span>Sorry, I can't attend</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">SUBMIT</button>
+                </form>
+            </div>
+
+            <div id="successMessage" class="success-msg">
+                <h3>Thank You!</h3>
+                <p>Your response has been submitted successfully.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // 1. GET GUEST NAME FROM URL
+        let submitted = false;
+
+        // 1. GET GUEST NAME FROM URL & AUTO FILL RSVP FORM
         const params = new URLSearchParams(window.location.search);
         const guest = params.get("guest");
         const guestName = document.getElementById("guestName");
+        const inputGuestName = document.getElementById("inputGuestName");
 
         let guestText = "Our Distinguished Guest";
         if (guest) {
             guestText = decodeURIComponent(guest);
+            inputGuestName.value = guestText;
         }
         guestName.textContent = guestText;
 
-        // 2. RSVP GOOGLE FORM LINK SETUP
+        // 2. MODAL RSVP LOGIC
         const rsvpButton = document.getElementById("rsvpButton");
-        const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfTNwyctNnz9KR4f4WHtUo234dq0oVlWAY77o9CVXWRkidDxg/viewform?usp=pp_url";
+        const rsvpModal = document.getElementById("rsvpModal");
+        const closeRsvp = document.getElementById("closeRsvp");
 
-        if (guest) {
-            rsvpButton.href = formURL + "&entry.2095795296=" + encodeURIComponent(guest);
-        } else {
-            rsvpButton.href = formURL;
+        rsvpButton.addEventListener("click", function() {
+            rsvpModal.classList.add("show");
+        });
+
+        closeRsvp.addEventListener("click", function() {
+            rsvpModal.classList.remove("show");
+        });
+
+        window.addEventListener("click", function(e) {
+            if (e.target === rsvpModal) {
+                rsvpModal.classList.remove("show");
+            }
+        });
+
+        function showSuccess() {
+            document.getElementById("rsvpFormContainer").style.display = "none";
+            document.getElementById("successMessage").style.display = "block";
+            setTimeout(function() {
+                rsvpModal.classList.remove("show");
+            }, 2500);
         }
 
         // 3. BACKGROUND MUSIC & TOGGLE LOGIC
@@ -149,15 +366,11 @@
         const invitation = document.getElementById("invitation");
 
         openButton.addEventListener("click", function () {
-            // Play background music
             bgMusic.play().then(() => {
                 isPlaying = true;
             }).catch(e => console.log("Autoplay blocked:", e));
             
-            // Show music button
             musicToggle.classList.remove("hidden");
-
-            // Cinematic Close Transition
             opening.classList.add("closing");
 
             setTimeout(function () {
