@@ -6,6 +6,18 @@
     <title>THE OPENING INVITATION | Seahaven Villas by Kamuela</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* TAMPILAN JABATAN / INSTANSI (TITLE) */
+        .guest-title {
+            font-size: 15px;
+            color: #668374;
+            font-weight: 400;
+            margin-top: 6px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+            font-family: inherit;
+        }
+
         /* RSVP MODAL STYLES */
         .rsvp-modal {
             display: none;
@@ -184,6 +196,7 @@
                 <p class="dear">Dear</p>
 
                 <h1 id="guestName">Our Distinguished Guest</h1>
+                <p id="guestTitle" class="guest-title"></p>
 
                 <button id="openInvitation" class="open-btn">
                     OPEN INVITATION
@@ -299,18 +312,36 @@
     <script>
         let submitted = false;
 
-        // 1. GET GUEST NAME FROM URL & AUTO FILL RSVP FORM
+        // 1. BACA PARAMETER NAMA (guest) & JABATAN (title) DARI URL
         const params = new URLSearchParams(window.location.search);
         const guest = params.get("guest");
+        const title = params.get("title");
+
         const guestName = document.getElementById("guestName");
+        const guestTitle = document.getElementById("guestTitle");
         const inputGuestName = document.getElementById("inputGuestName");
 
         let guestText = "Our Distinguished Guest";
+        let fullGuestTextForForm = guestText;
+
         if (guest) {
             guestText = decodeURIComponent(guest);
-            inputGuestName.value = guestText;
+            fullGuestTextForForm = guestText;
         }
         guestName.textContent = guestText;
+
+        if (title) {
+            const titleText = decodeURIComponent(title);
+            guestTitle.textContent = titleText;
+            guestTitle.style.display = "block";
+            // Menggabungkan Nama & Jabatan untuk dikirim ke Google Sheets
+            fullGuestTextForForm += " - " + titleText;
+        } else {
+            guestTitle.style.display = "none";
+        }
+
+        // Auto fill kolom Nama di Form RSVP
+        inputGuestName.value = fullGuestTextForForm;
 
         // 2. MODAL RSVP LOGIC
         const rsvpButton = document.getElementById("rsvpButton");
