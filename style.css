@@ -8,10 +8,10 @@
 }
 
 :root {
-    --primary-color: #1b4d3e;      /* Deep Elegant Emerald Green */
-    --accent-color: #d4af37;       /* Elegant Gold Accent */
+    --primary-color: #1b4d3e;      /* Seahaven Emerald Green */
+    --accent-color: #d4af37;       /* Gold Accent */
     --text-muted: #668374;         /* Soft Muted Green */
-    --bg-cream: #f9f8f3;           /* Warm Ivory / Off-white */
+    --bg-cream: #f9f8f3;           /* Ivory Background */
     --white: #ffffff;
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
     --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.2);
@@ -29,25 +29,7 @@ body {
 }
 
 /* ==========================================================================
-   2. BRANDING LOGO (Disesuaikan untuk Spesifikasi 1870x667 px)
-   ========================================================================== */
-.brand-logo {
-    text-align: center;
-    margin-bottom: 24px;
-    width: 100%;
-}
-
-.logo-img {
-    width: 100%;
-    max-width: 260px; /* Proporsi pas untuk aspek rasio 1870x667 */
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    object-fit: contain;
-}
-
-/* ==========================================================================
-   3. OPENING COVER (CINEMATIC INTRO)
+   2. OPENING COVER & GREEN BORDER FRAME
    ========================================================================== */
 .opening {
     position: fixed;
@@ -73,10 +55,42 @@ body {
 
 .opening-content {
     text-align: center;
-    max-width: 480px;
+    max-width: 440px;
     width: 100%;
 }
 
+/* BINGKAI GARIS TIPI IJO SEAHAVEN */
+.opening-card {
+    border: 1px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 40px 24px;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(27, 77, 62, 0.05);
+    margin: 0 auto;
+    position: relative;
+}
+
+/* ==========================================================================
+   3. BRANDING LOGO (1870 x 667 PX)
+   ========================================================================== */
+.brand-logo {
+    text-align: center;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.logo-img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   4. CEREMONY TEXT & BUTTONS
+   ========================================================================== */
 .ceremony .eyebrow {
     font-size: 13px;
     letter-spacing: 3px;
@@ -99,10 +113,19 @@ body {
     font-size: 26px;
     font-weight: 700;
     color: var(--primary-color);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+    letter-spacing: 1px;
     margin-bottom: 4px;
     line-height: 1.3;
+}
+
+.guest-title {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-top: 4px;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
 }
 
 .open-btn {
@@ -117,6 +140,7 @@ body {
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(27, 77, 62, 0.25);
     transition: all 0.3s ease;
+    margin-top: 10px;
 }
 
 .open-btn:hover {
@@ -126,7 +150,7 @@ body {
 }
 
 /* ==========================================================================
-   4. MAIN INVITATION CONTENT
+   5. MAIN INVITATION CONTENT
    ========================================================================== */
 .invitation {
     display: none;
@@ -184,7 +208,7 @@ body {
 }
 
 /* ==========================================================================
-   5. ACTION BUTTONS (RSVP & MAPS)
+   6. ACTION BUTTONS (RSVP & MAPS)
    ========================================================================== */
 .actions {
     max-width: 480px;
@@ -208,6 +232,8 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     border: none;
+    width: 100%;
+    cursor: pointer;
 }
 
 .rsvp-btn {
@@ -230,7 +256,7 @@ body {
 }
 
 /* ==========================================================================
-   6. FLOATING MUSIC CONTROL BUTTON
+   7. FLOATING MUSIC CONTROL BUTTON
    ========================================================================== */
 .music-btn {
     position: fixed;
@@ -261,7 +287,7 @@ body {
 }
 
 /* ==========================================================================
-   7. RSVP POP-UP MODAL FORM
+   8. RSVP POP-UP MODAL FORM
    ========================================================================== */
 .rsvp-modal {
     display: none;
@@ -290,7 +316,7 @@ body {
     padding: 28px 24px;
     box-shadow: var(--shadow-card);
     position: relative;
-    border: 1px solid rgba(212, 175, 55, 0.4);
+    border: 1px solid var(--primary-color);
     text-align: left;
 }
 
@@ -413,7 +439,7 @@ body {
 }
 
 /* ==========================================================================
-   8. ELEGANT FOOTER
+   9. FOOTER
    ========================================================================== */
 .footer {
     text-align: center;
@@ -456,7 +482,7 @@ body {
 }
 
 /* ==========================================================================
-   9. SCROLL REVEAL ANIMATIONS
+   10. SCROLL REVEAL ANIMATIONS
    ========================================================================== */
 .reveal {
     opacity: 0;
@@ -470,13 +496,13 @@ body {
 }
 
 /* ==========================================================================
-   10. MEDIA QUERIES (DESKTOP OPTIMIZATION)
+   11. RESPONSIVE OPTIMIZATION
    ========================================================================== */
 @media (min-width: 768px) {
     .logo-img {
-        max-width: 290px; /* Ukuran sedikit lebih besar di layar desktop */
+        max-width: 280px;
     }
     .ceremony h1 {
-        font-size: 32px;
+        font-size: 30px;
     }
 }
