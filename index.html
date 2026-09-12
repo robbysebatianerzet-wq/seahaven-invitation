@@ -5,181 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>THE OPENING INVITATION | Seahaven Villas by Kamuela</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* LOGO BRANDING STYLES */
-        .brand-logo {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .logo-img {
-            max-width: 180px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        /* TAMPILAN JABATAN / INSTANSI (TITLE) */
-        .guest-title {
-            font-size: 15px;
-            color: #668374;
-            font-weight: 400;
-            margin-top: 6px;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            line-height: 1.4;
-            font-family: inherit;
-        }
-
-        /* RSVP MODAL STYLES */
-        .rsvp-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .rsvp-modal.show {
-            display: flex;
-        }
-
-        .rsvp-card {
-            background: #ffffff;
-            border-radius: 12px;
-            max-width: 420px;
-            width: 100%;
-            padding: 30px 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            position: relative;
-            border: 1px solid #d4af37;
-            text-align: left;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 18px;
-            background: none;
-            border: none;
-            font-size: 22px;
-            color: #888;
-            cursor: pointer;
-        }
-
-        .rsvp-card h2 {
-            font-size: 20px;
-            color: #1b4d3e;
-            margin-bottom: 6px;
-            font-family: Georgia, serif;
-        }
-
-        .rsvp-card p.sub {
-            font-size: 12px;
-            color: #668374;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #1b4d3e;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-        }
-
-        .form-group input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-            background: #fdfdfd;
-            color: #333;
-            outline: none;
-        }
-
-        .form-group input[type="text"]:focus {
-            border-color: #1b4d3e;
-        }
-
-        .radio-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 6px;
-        }
-
-        .radio-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            color: #333;
-            cursor: pointer;
-            padding: 10px 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            transition: background 0.2s;
-        }
-
-        .radio-label:hover {
-            background: #f7f6f2;
-        }
-
-        .radio-label input[type="radio"] {
-            accent-color: #1b4d3e;
-            width: 16px;
-            height: 16px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: #1b4d3e;
-            color: #ffffff;
-            border: none;
-            padding: 14px;
-            border-radius: 6px;
-            font-size: 13px;
-            letter-spacing: 2px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-
-        .submit-btn:hover {
-            background: #12352b;
-        }
-
-        .success-msg {
-            display: none;
-            text-align: center;
-            padding: 20px 10px;
-        }
-
-        .success-msg h3 {
-            color: #1b4d3e;
-            margin-bottom: 8px;
-        }
-
-        .success-msg p {
-            font-size: 13px;
-            color: #555;
-        }
-    </style>
 </head>
 
 <body>
@@ -194,35 +19,40 @@
         <span id="musicIcon">🎵</span>
     </button>
 
-    <!-- OPENING COVER (CINEMATIC) -->
+    <!-- OPENING COVER (CINEMATIC INTRO) -->
     <section id="opening" class="opening">
         <div class="opening-overlay"></div>
         <div class="opening-content">
 
-            <!-- BRAND LOGO GAMBAR -->
-            <div class="brand-logo">
-                <img src="assets/logo-seahaven.png" alt="Seahaven Villas by Kamuela" class="logo-img">
-            </div>
+            <!-- BINGKAI KARTU HIJAU SEAHAVEN -->
+            <div class="opening-card">
 
-            <div class="ceremony">
-                <p class="eyebrow">THE OPENING INVITATION</p>
-                <p class="dear">Dear</p>
+                <!-- BRAND LOGO -->
+                <div class="brand-logo">
+                    <img src="assets/logo-seahaven.png" alt="Seahaven Villas by Kamuela" class="logo-img">
+                </div>
 
-                <h1 id="guestName">Our Distinguished Guest</h1>
-                <p id="guestTitle" class="guest-title"></p>
+                <div class="ceremony">
+                    <p class="eyebrow">THE OPENING INVITATION</p>
+                    <p class="dear">Dear</p>
 
-                <button id="openInvitation" class="open-btn">
-                    OPEN INVITATION
-                </button>
+                    <h1 id="guestName">Our Distinguished Guest</h1>
+                    <p id="guestTitle" class="guest-title"></p>
+
+                    <button id="openInvitation" class="open-btn">
+                        OPEN INVITATION
+                    </button>
+                </div>
+
             </div>
 
         </div>
     </section>
 
-    <!-- MAIN INVITATION -->
+    <!-- MAIN INVITATION CONTENT -->
     <main id="invitation" class="invitation">
 
-        <!-- Invitation Front (Slow Zoom / Fade) -->
+        <!-- Invitation Front Card -->
         <section class="invitation-page reveal zoom-effect">
             <div class="img-wrapper">
                 <img
@@ -241,11 +71,9 @@
 
         <!-- ACTION BUTTONS -->
         <section class="actions reveal">
-
             <button
                 id="rsvpButton"
                 class="action-btn rsvp-btn"
-                style="width: 100%; cursor: pointer;"
             >
                 <span class="icon">📝</span>
                 <span>Confirm Attendance</span>
@@ -260,10 +88,9 @@
                 <span class="icon">📍</span>
                 <span>Open Google Maps</span>
             </a>
-
         </section>
 
-        <!-- ELEGANT FOOTER -->
+        <!-- FOOTER -->
         <footer class="footer reveal">
             <div class="footer-line"></div>
             <div class="footer-brand">SEAHAVEN VILLAS</div>
@@ -274,7 +101,7 @@
 
     </main>
 
-    <!-- RSVP POP-UP FORM MODAL -->
+    <!-- RSVP POP-UP MODAL -->
     <div id="rsvpModal" class="rsvp-modal">
         <div class="rsvp-card">
             <button id="closeRsvp" class="close-btn">&times;</button>
@@ -322,10 +149,11 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT LOGIC -->
     <script>
         let submitted = false;
 
-        // 1. BACA PARAMETER NAMA (guest) & JABATAN (title) DARI URL
+        // 1. URL PARAMS LOGIC
         const params = new URLSearchParams(window.location.search);
         const guest = params.get("guest");
         const title = params.get("title");
@@ -352,10 +180,9 @@
             guestTitle.style.display = "none";
         }
 
-        // Auto fill kolom Nama di Form RSVP
         inputGuestName.value = fullGuestTextForForm;
 
-        // 2. MODAL RSVP LOGIC
+        // 2. RSVP MODAL LOGIC
         const rsvpButton = document.getElementById("rsvpButton");
         const rsvpModal = document.getElementById("rsvpModal");
         const closeRsvp = document.getElementById("closeRsvp");
@@ -382,7 +209,7 @@
             }, 2500);
         }
 
-        // 3. BACKGROUND MUSIC & TOGGLE LOGIC
+        // 3. AUDIO CONTROL LOGIC
         const bgMusic = document.getElementById("bgMusic");
         const musicToggle = document.getElementById("musicToggle");
         const musicIcon = document.getElementById("musicIcon");
@@ -403,7 +230,7 @@
 
         musicToggle.addEventListener("click", toggleMusic);
 
-        // 4. OPEN INVITATION TRANSITION
+        // 4. OPEN COVER ANIMATION LOGIC
         const openButton = document.getElementById("openInvitation");
         const opening = document.getElementById("opening");
         const invitation = document.getElementById("invitation");
