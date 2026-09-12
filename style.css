@@ -1,208 +1,180 @@
-/* ==========================================
-   RESET & BASE STYLES
-   ========================================== */
-* {
+/* ==========================================================================
+   1. RESET & VARIABLES
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f7f6f2; /* Krem terang bersih khas Kamuela */
-    color: #1b4d3e; /* Teks hijau tua */
+:root {
+    --primary-color: #1b4d3e;      /* Deep Elegant Emerald Green */
+    --accent-color: #d4af37;       /* Elegant Gold Accent */
+    --text-muted: #668374;         /* Soft Muted Green */
+    --bg-cream: #f9f8f3;           /* Warm Ivory / Off-white */
+    --white: #ffffff;
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 20px 40px rgba(0, 0, 0, 0.2);
+    --font-serif: Georgia, 'Times New Roman', serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-cream);
+    color: #333333;
+    font-family: var(--font-sans);
+    line-height: 1.6;
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* ==========================================
-   FLOATING MUSIC BUTTON
-   ========================================== */
-.music-btn {
-    position: fixed;
-    bottom: 25px;
-    right: 20px;
-    z-index: 999;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: #1b4d3e;
-    border: 1px solid #d4af37;
-    color: #ffffff;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    animation: pulseGlow 2s infinite;
+/* ==========================================================================
+   2. BRANDING LOGO (Disesuaikan untuk Spesifikasi 1870x667 px)
+   ========================================================================== */
+.brand-logo {
+    text-align: center;
+    margin-bottom: 24px;
+    width: 100%;
 }
 
-.music-btn.hidden {
-    display: none;
+.logo-img {
+    width: 100%;
+    max-width: 260px; /* Proporsi pas untuk aspek rasio 1870x667 */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
 }
 
-.music-btn.muted {
-    opacity: 0.6;
-    animation: none;
-}
-
-@keyframes pulseGlow {
-    0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-}
-
-/* ==========================================
-   OPENING COVER
-   ========================================== */
+/* ==========================================================================
+   3. OPENING COVER (CINEMATIC INTRO)
+   ========================================================================== */
 .opening {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: #f7f6f2;
+    background-color: var(--bg-cream);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
-    text-align: center;
-    padding: 20px;
-    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+    z-index: 500;
+    padding: 24px;
+    transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s;
 }
 
 .opening.closing {
-    transform: translateY(-100%);
     opacity: 0;
+    transform: scale(0.95);
+    visibility: hidden;
     pointer-events: none;
 }
 
 .opening-content {
-    max-width: 450px;
+    text-align: center;
+    max-width: 480px;
     width: 100%;
 }
 
-.brand {
-    font-size: 18px;
-    letter-spacing: 4px;
-    color: #1b4d3e;
-    font-weight: 600;
-    margin-bottom: 40px;
-}
-
-.brand span {
-    display: block;
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: #668374;
-    margin-top: 4px;
-}
-
 .ceremony .eyebrow {
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: 3px;
-    color: #668374;
+    color: var(--text-muted);
+    font-weight: 500;
     margin-bottom: 12px;
+    text-transform: uppercase;
 }
 
 .ceremony .dear {
-    font-size: 14px;
+    font-size: 18px;
     font-style: italic;
-    color: #555555;
-    margin-bottom: 6px;
-    font-family: Georgia, serif;
+    font-family: var(--font-serif);
+    color: var(--text-muted);
+    margin-bottom: 4px;
 }
 
 .ceremony h1 {
-    font-size: 28px;
-    font-weight: 400;
-    font-family: Georgia, serif;
-    letter-spacing: 1px;
-    margin-bottom: 40px;
-    color: #111111;
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--primary-color);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    line-height: 1.3;
 }
 
 .open-btn {
-    background: #1b4d3e;
-    border: 1px solid #1b4d3e;
-    color: #ffffff;
-    padding: 14px 32px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 6px;
     font-size: 12px;
     letter-spacing: 2px;
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(27, 77, 62, 0.2);
+    box-shadow: 0 4px 15px rgba(27, 77, 62, 0.25);
     transition: all 0.3s ease;
 }
 
-.open-btn:active {
-    background: #12352b;
-    transform: scale(0.98);
+.open-btn:hover {
+    background-color: #12352b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(27, 77, 62, 0.35);
 }
 
-/* ==========================================
-   MAIN INVITATION
-   ========================================== */
+/* ==========================================================================
+   4. MAIN INVITATION CONTENT
+   ========================================================================== */
 .invitation {
     display: none;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px 16px 40px;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    padding-bottom: 40px;
 }
 
 .invitation.show {
     display: block;
+    opacity: 1;
 }
 
 .invitation-page {
-    margin-bottom: 24px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: center;
+    padding: 20px 16px;
 }
 
 .img-wrapper {
+    max-width: 600px;
+    width: 100%;
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    background: var(--white);
 }
 
 .invitation-image {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 1.5s ease-out;
 }
 
-.zoom-effect.visible .invitation-image {
-    animation: slowZoom 10s ease-out forwards;
-}
-
-@keyframes slowZoom {
-    0% { transform: scale(1.04); }
-    100% { transform: scale(1); }
-}
-
-/* ==========================================
-   SCROLL INDICATOR
-   ========================================== */
+/* Scroll Down Indicator */
 .scroll-indicator {
     text-align: center;
-    margin: 20px 0 30px;
-    color: #1b4d3e;
-    font-size: 11px;
-    letter-spacing: 2px;
-    opacity: 0.7;
+    margin: 20px 0 30px 0;
+    color: var(--text-muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .scroll-indicator .arrow {
     font-size: 16px;
     margin-top: 4px;
-    animation: bounce 1.5s infinite;
+    animation: bounce 1.8s infinite;
 }
 
 @keyframes bounce {
@@ -211,14 +183,16 @@ html, body {
     60% { transform: translateY(3px); }
 }
 
-/* ==========================================
-   ACTION BUTTONS
-   ========================================== */
+/* ==========================================================================
+   5. ACTION BUTTONS (RSVP & MAPS)
+   ========================================================================== */
 .actions {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin: 30px 0 40px;
 }
 
 .action-btn {
@@ -226,73 +200,264 @@ html, body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 15px;
+    padding: 14px 20px;
     border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     letter-spacing: 1px;
+    text-decoration: none;
     transition: all 0.3s ease;
+    border: none;
 }
 
 .rsvp-btn {
-    background: #ffffff;
-    color: #1b4d3e;
-    border: 1px solid #1b4d3e;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.rsvp-btn:hover {
+    background-color: #12352b;
 }
 
 .maps-btn {
-    background: #1b4d3e;
-    color: #ffffff;
-    border: 1px solid #1b4d3e;
-    box-shadow: 0 4px 12px rgba(27, 77, 62, 0.15);
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
 }
 
-.action-btn:active {
-    opacity: 0.85;
-    transform: scale(0.98);
+.maps-btn:hover {
+    background-color: #f0f4f2;
 }
 
-/* ==========================================
-   ELEGANT FOOTER
-   ========================================== */
+/* ==========================================================================
+   6. FLOATING MUSIC CONTROL BUTTON
+   ========================================================================== */
+.music-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 2px solid var(--white);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.music-btn.hidden {
+    display: none;
+}
+
+.music-btn.muted {
+    background-color: #777777;
+}
+
+/* ==========================================================================
+   7. RSVP POP-UP MODAL FORM
+   ========================================================================== */
+.rsvp-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.rsvp-modal.show {
+    display: flex;
+}
+
+.rsvp-card {
+    background: var(--white);
+    border-radius: 12px;
+    max-width: 420px;
+    width: 100%;
+    padding: 28px 24px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    text-align: left;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #888888;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.rsvp-card h2 {
+    font-size: 20px;
+    color: var(--primary-color);
+    margin-bottom: 4px;
+    font-family: var(--font-serif);
+}
+
+.rsvp-card p.sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background: #fcfcfc;
+    color: #333333;
+    outline: none;
+}
+
+.form-group input[type="text"]:focus {
+    border-color: var(--primary-color);
+}
+
+.radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #333333;
+    cursor: pointer;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.radio-label:hover {
+    background: #f7f6f2;
+}
+
+.radio-label input[type="radio"] {
+    accent-color: var(--primary-color);
+    width: 16px;
+    height: 16px;
+}
+
+.submit-btn {
+    width: 100%;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background: #12352b;
+}
+
+.success-msg {
+    display: none;
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.success-msg h3 {
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.success-msg p {
+    font-size: 13px;
+    color: #555555;
+}
+
+/* ==========================================================================
+   8. ELEGANT FOOTER
+   ========================================================================== */
 .footer {
     text-align: center;
-    padding: 30px 20px 20px;
-    border-top: 1px solid rgba(27, 77, 62, 0.15);
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.footer-line {
+    width: 50px;
+    height: 1px;
+    background-color: var(--accent-color);
+    margin: 0 auto 20px auto;
 }
 
 .footer-brand {
     font-size: 14px;
-    letter-spacing: 3px;
-    color: #1b4d3e;
+    letter-spacing: 2px;
+    color: var(--primary-color);
     font-weight: 600;
 }
 
 .footer-sub {
     font-size: 10px;
-    letter-spacing: 2px;
-    color: #668374;
-    margin-bottom: 15px;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
 }
 
 .footer-tagline {
     font-size: 12px;
     font-style: italic;
-    color: #555555;
-    margin-bottom: 20px;
+    font-family: var(--font-serif);
+    color: #666666;
+    margin-bottom: 16px;
 }
 
 .footer-copyright {
-    font-size: 10px;
-    color: #888888;
-    letter-spacing: 1px;
+    font-size: 11px;
+    color: #999999;
 }
 
-/* ==========================================
-   SCROLL REVEAL CLASS
-   ========================================== */
+/* ==========================================================================
+   9. SCROLL REVEAL ANIMATIONS
+   ========================================================================== */
 .reveal {
     opacity: 0;
     transform: translateY(20px);
@@ -302,4 +467,16 @@ html, body {
 .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ==========================================================================
+   10. MEDIA QUERIES (DESKTOP OPTIMIZATION)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .logo-img {
+        max-width: 290px; /* Ukuran sedikit lebih besar di layar desktop */
+    }
+    .ceremony h1 {
+        font-size: 32px;
+    }
 }
